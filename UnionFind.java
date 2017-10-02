@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 class UnionFind<E extends Comparable<E>>{
-	private static UID = 0;
+	private static int UID = 0;
 	HashMap<Integer, E> _itemMap; 
 	ArrayList<E> _unionFindArray;
 	ArrayList<Integer> _parentArray;
@@ -9,13 +10,15 @@ class UnionFind<E extends Comparable<E>>{
 		_unionFindArray = new ArrayList<E>();
 		_parentArray = new ArrayList<Integer>();
 		_rankArray = new ArrayList<Integer>();
+		_itemMap = new HashMap<Integer,E>();
 	}
 	public UnionFind(ArrayList<E> arr){
+		this();
 		for(int i = 0; i<arr.size(); i++){
 			_itemMap.put(UID, arr.get(i));
-			UID++;
 			_parentArray.add(UID);
 			_rankArray.add(0);
+			UID++;
 		}
 	}
 	public int findSet(int index){
@@ -27,7 +30,7 @@ class UnionFind<E extends Comparable<E>>{
 			return ret;
 		}
 	}
-	public int isSameSet(int i, int j){
+	public Boolean isSameSet(int i, int j){
 		return findSet(i)==findSet(j);
 	}
 	public int rank(int index){
@@ -37,7 +40,7 @@ class UnionFind<E extends Comparable<E>>{
 		if(!isSameSet(i,j)){
 			int repItemOfI = findSet(i);
 			int repItemOfJ = findSet(j);
-			if(_rankArray.get(x)>_rankArray.get(y))
+			if(_rankArray.get(i)>_rankArray.get(j))
 				_parentArray.set(repItemOfJ,repItemOfI);
 			else{
 				_parentArray.set(repItemOfI, repItemOfJ);
@@ -45,9 +48,6 @@ class UnionFind<E extends Comparable<E>>{
 					_rankArray.set(repItemOfJ,_rankArray.get(repItemOfJ)+1);
 			}
 		}
-	}
-	public int getIndex(E e){
-		return _itemMap.get(e);
 	}
 	//TODO: Construct UFDS from SetForest
 }
