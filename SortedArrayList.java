@@ -36,15 +36,4 @@ class SortedArrayList<E extends Comparable<E>> extends ArrayList<E>{
 			return -1;
 		}
 	}
-	public static void main(String[] args){
-		SortedArrayList<Integer> sal = new SortedArrayList<Integer>();
-		sal.add(0);
-		sal.add(1);
-		sal.add(2);
-		sal.add(3);
-		sal.add(5);
-		sal.add(9);
-		System.out.println(sal);
-
-	}
 }
