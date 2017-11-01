@@ -4,7 +4,8 @@ import java.util.Collections;
 import java.util.Stack;
 class BST<E extends Comparable<E>>{
 	public BSTVertex<E> _root;
-	public static final boolean __DEBUG = false; 
+	public static final boolean __DEBUG = false;
+	 
 	BST(){
 		_root = null;
 	}
